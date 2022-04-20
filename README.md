@@ -10,3 +10,4 @@ RxSwift's Single is used for network. Also, since BookmarkCollectionView needs t
 
 FMDB is used to store user's bookmark permanently. All oprations related with local data storage are processed via BookmarkDAO.
 
+Use need to pod install first to run this project.
