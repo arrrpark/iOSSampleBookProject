@@ -14,9 +14,6 @@ import ObjectMapper
 class NewBookViewModel {
     var books: [Book] = []
     
-    var isFetching = false
-    var pageIndex = 0
-    
     func getNewBooks() -> Single<[Book]> {
         Single.create { observer -> Disposable in
             let onSuccess: (JSON) -> Void = { json in

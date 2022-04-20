@@ -112,7 +112,9 @@ class DetailBookViewController: AppbaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showIndicator()
         detailBookViewModel.getBookDetail().subscribe({ [weak self] event in
+            self?.hideIndicator()
             switch event {
             case .success(let detail):
                 if let urlString = detail.image, let url = URL(string: urlString) {

@@ -13,18 +13,22 @@ import RxCocoa
 
 class MainTabBarViewController: UITabBarController {
     
-    lazy var newBookCnotroller = NewBookController(newBookViewModel: NewBookViewModel()).then {
+    lazy var newBookViewCnotroller = NewBookViewController(newBookViewModel: NewBookViewModel()).then {
         $0.tabBarItem = UITabBarItem(title: "New", image: nil, tag: 0)
     }
     
+    lazy var searchViewcontroller = SearchBookViewController(searchBookViewModel: SearchBookViewModel()).then {
+        $0.tabBarItem = UITabBarItem(title: "Search", image: nil, tag: 1)
+    }
+    
     lazy var bookmarkViewController = BookmarkViewController(bookmarkViewModel: BookmarkViewModel()).then {
-        $0.tabBarItem = UITabBarItem(title: "Bookmark", image: nil, tag: 1)
+        $0.tabBarItem = UITabBarItem(title: "Bookmark", image: nil, tag: 2)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewControllers = [newBookCnotroller, bookmarkViewController]
+        viewControllers = [newBookViewCnotroller, searchViewcontroller, bookmarkViewController]
     }
 }
 

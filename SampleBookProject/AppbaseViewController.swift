@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import Then
+import SnapKit
 
 class AppbaseViewController: UIViewController {
+    lazy var activityIndicator = UIActivityIndicatorView().then {
+        $0.startAnimating()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

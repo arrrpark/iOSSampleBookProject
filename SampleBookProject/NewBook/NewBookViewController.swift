@@ -11,7 +11,7 @@ import Then
 import RxSwift
 import RxCocoa
 
-class NewBookController: AppbaseViewController {
+class NewBookViewController: AppbaseViewController {
     
     let disposeBag = DisposeBag()
 
@@ -40,9 +40,9 @@ class NewBookController: AppbaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        newBookViewModel.isFetching = true
+        showIndicator()
         newBookViewModel.getNewBooks().subscribe({ [weak self] event in
-            self?.newBookViewModel.isFetching = false
+            self?.hideIndicator()
             switch event {
             case .success(let books):
                 self?.newBookViewModel.books.append(contentsOf: books)
@@ -71,7 +71,7 @@ class NewBookController: AppbaseViewController {
     
 }
 
-extension NewBookController: NewBookCollectionViewDelegate {
+extension NewBookViewController: NewBookCollectionViewDelegate {
     func newBookCollectionView(_ collectionView: NewBookCollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailBookViewModel = DetailBookViewModel(book: newBookViewModel.books[indexPath.row])
         let controller = DetailBookViewController(detailBookViewModel: detailBookViewModel)
