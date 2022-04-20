@@ -23,14 +23,16 @@ struct AlamofireWrapper {
     
     private let baseUrl = "https://api.itbook.store/"
     
-    lazy var headers: HTTPHeaders = [
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-    ]
+    func configureHeaders() -> HTTPHeaders {
+        [
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+    }
     
     func byGet(url: String, parameters: [String: Any]? = nil, onSuccess: ((JSON) -> Void)?, onFailure: ((NetworkError) -> Void)?) -> DataRequest {
         
-        return AF.request("\(baseUrl)\(url)", parameters: parameters, headers: headers)
+        return AF.request("\(baseUrl)\(url)", parameters: parameters, headers: configureHeaders())
             .validate(statusCode: 200..<300)
             .response { response in
                 switch response.result {
