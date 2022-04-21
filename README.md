@@ -2,9 +2,9 @@
 
 This project is a sample project that shows my coding style.
 
-This proejct uses MVVM architecture. ViewModel is injected and used in all ViewControllers, seperating business logic and presentation logic.
+This proejct uses MVVM architecture. ViewModel is injected and used in all ViewControllers, seperating business logic from presentation logic.
 
-Instead of using a storyboard, I made UI programmatically using SnapKit.
+Instead of using storyboards, I made UI programmatically using SnapKit.
 
 RxSwift's Single is used for network. Also, since BookmarkCollectionView needs to repond to user interactions received from various screens, BehaviorRelay is used for the data source.
 
