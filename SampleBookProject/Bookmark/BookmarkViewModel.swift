@@ -7,7 +7,11 @@
 
 import Foundation
 
-class BookmarkViewModel {
+protocol BookmarkProtocol: AnyObject {
+    func findBookmarks() -> [Book]
+}
+
+class BookmarkViewModel: BookmarkProtocol {
     func findBookmarks() -> [Book] {
         return BookmarkDAO.shared.findBookmarks()
     }

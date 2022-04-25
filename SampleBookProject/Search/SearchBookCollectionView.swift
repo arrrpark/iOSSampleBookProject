@@ -16,9 +16,9 @@ protocol SearchBookCollectionViewDelegate: AnyObject {
 class SearchBookCollectionView: UICollectionView {
     weak var viewDelegate: SearchBookCollectionViewDelegate?
     
-    let searchBookViewModel: SearchBookViewModel
+    let searchBookViewModel: SearchBookProtocol
     
-    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, searchBookViewModel: SearchBookViewModel) {
+    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, searchBookViewModel: SearchBookProtocol) {
         self.searchBookViewModel = searchBookViewModel
         super.init(frame: frame, collectionViewLayout: layout)
         

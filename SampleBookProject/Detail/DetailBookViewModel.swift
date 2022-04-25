@@ -10,7 +10,16 @@ import RxSwift
 import SwiftyJSON
 import ObjectMapper
 
-class DetailBookViewModel {
+protocol DetailBookProtocol {
+    var book: Book { get }
+    
+    func isBookmarked(_ isbn13: String?) -> Bool
+    func addBookmark(_ book: Book) -> Bool
+    func cancelBookmark(_ isbn13: String?) -> Bool
+    func getBookDetail() -> Single<BookDetail>
+}
+
+class DetailBookViewModel: DetailBookProtocol {
     let book: Book
     
     init(book: Book) {
@@ -40,7 +49,10 @@ class DetailBookViewModel {
     
     func getBookDetail() -> Single<BookDetail> {
         Single.create { [weak self] observer -> Disposable in
-            guard let self = self, let isbn13 = self.book.isbn13 else { return Disposables.create { } }
+            guard let self = self, let isbn13 = self.book.isbn13 else {
+                observer(.failure(NetworkError.networkError))
+                return Disposables.create { }
+            }
             
             let onSuccess: (JSON) -> Void = { json in
                 guard let bookDetail = Mapper<BookDetail>().map(JSONObject: json.object) else {

@@ -12,7 +12,7 @@ import RxCocoa
 class BookmarkViewController: AppbaseViewController {
     let disposeBag = DisposeBag()
     
-    let bookmarkViewModel: BookmarkViewModel
+    let bookmarkViewModel: BookmarkProtocol
     
     lazy var bookmarkCollectinViewFlowLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .vertical
@@ -25,7 +25,7 @@ class BookmarkViewController: AppbaseViewController {
         $0.viewDelegate = self
     }
     
-    init(bookmarkViewModel: BookmarkViewModel) {
+    init(bookmarkViewModel: BookmarkProtocol) {
         self.bookmarkViewModel = bookmarkViewModel
         super.init(nibName: nil, bundle: nil)
     }

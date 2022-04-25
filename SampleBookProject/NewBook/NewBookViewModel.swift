@@ -11,7 +11,13 @@ import RxCocoa
 import SwiftyJSON
 import ObjectMapper
 
-class NewBookViewModel {
+protocol NewBookProtocol: AnyObject {
+    var books: [Book] { get set }
+    
+    func getNewBooks() -> Single<[Book]>
+}
+
+class NewBookViewModel: NewBookProtocol {
     var books: [Book] = []
     
     func getNewBooks() -> Single<[Book]> {

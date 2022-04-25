@@ -10,12 +10,13 @@ import SnapKit
 import Then
 import RxSwift
 import RxCocoa
+import SwiftyJSON
 
 class NewBookViewController: AppbaseViewController {
     
     let disposeBag = DisposeBag()
 
-    let newBookViewModel: NewBookViewModel
+    let newBookViewModel: NewBookProtocol
     
     lazy var bookCollectionFlowLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .vertical
@@ -28,7 +29,7 @@ class NewBookViewController: AppbaseViewController {
         $0.viewDelegate = self
     }
     
-    init(newBookViewModel: NewBookViewModel) {
+    init(newBookViewModel: NewBookProtocol) {
         self.newBookViewModel = newBookViewModel
         super.init(nibName: nil, bundle: nil)
     }

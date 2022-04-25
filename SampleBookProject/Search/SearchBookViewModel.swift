@@ -11,7 +11,20 @@ import RxCocoa
 import SwiftyJSON
 import ObjectMapper
 
-class SearchBookViewModel {
+protocol SearchBookProtocol: AnyObject {
+    var books: [Book] { get set }
+    
+    var isFetching: Bool { get set }
+    var pageIndex: Int { get set }
+    var totalPage: Int { get set }
+    var word: String { get set }
+    
+    func searchBooks(_ word: String) -> Single<[Book]>
+    func fetchMore() -> Single<[Book]>
+    func canFetchMore() -> Bool
+}
+
+class SearchBookViewModel: SearchBookProtocol {
     var books: [Book] = []
     
     var isFetching = false
@@ -42,7 +55,10 @@ class SearchBookViewModel {
     
     func fetchMore() -> Single<[Book]> {
         Single.create { [weak self] observer -> Disposable in
-            guard let self = self else { return Disposables.create { } }
+            guard let self = self else {
+                observer(.failure(NetworkError.networkError))
+                return Disposables.create { }
+            }
             
             let onSuccess: (JSON) -> Void = { json in
                 guard let books = Mapper<Book>().mapArray(JSONObject: json["books"].object) else {

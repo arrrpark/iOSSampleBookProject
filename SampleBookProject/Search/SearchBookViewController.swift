@@ -14,7 +14,7 @@ import RxCocoa
 class SearchBookViewController: AppbaseViewController {
     let disposeBag = DisposeBag()
     
-    let searchBookViewModel: SearchBookViewModel
+    let searchBookViewModel: SearchBookProtocol
     
     lazy var searchTextField = UITextField().then {
         $0.borderStyle = .roundedRect
@@ -59,7 +59,7 @@ class SearchBookViewController: AppbaseViewController {
         $0.viewDelegate = self
     }
     
-    init(searchBookViewModel: SearchBookViewModel) {
+    init(searchBookViewModel: SearchBookProtocol) {
         self.searchBookViewModel = searchBookViewModel
         super.init(nibName: nil, bundle: nil)
     }

@@ -15,9 +15,9 @@ protocol NewBookCollectionViewDelegate: AnyObject {
 class NewBookCollectionView: UICollectionView {
     weak var viewDelegate: NewBookCollectionViewDelegate?
     
-    let newBookViewModel: NewBookViewModel
+    let newBookViewModel: NewBookProtocol
     
-    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, newBookViewModel: NewBookViewModel) {
+    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, newBookViewModel: NewBookProtocol) {
         self.newBookViewModel = newBookViewModel
         super.init(frame: frame, collectionViewLayout: layout)
         

@@ -15,9 +15,9 @@ protocol BookmarkCollectionViewDelegate: AnyObject {
 class BookmarkCollectionView: UICollectionView {
     weak var viewDelegate: BookmarkCollectionViewDelegate?
     
-    let bookmarkViewModel: BookmarkViewModel
+    let bookmarkViewModel: BookmarkProtocol
     
-    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, bookmarkViewModel: BookmarkViewModel) {
+    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, bookmarkViewModel: BookmarkProtocol) {
         self.bookmarkViewModel = bookmarkViewModel
         super.init(frame: frame, collectionViewLayout: layout)
         
